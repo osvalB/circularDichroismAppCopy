@@ -1,5 +1,19 @@
 ## Welcome message
 welcomeMessage <- function() {
+  shinyalert(paste("Welcome to", appName," <br><small>This website is free and open to all users and there is no login requirement.
+  If you found our tool useful, please consider starring our  <a href='https://github.com/SPC-Facility-EMBL-Hamburg/eSPC_biophysics_platform' target='_blank' rel='noopener noreferrer'>Github</a>
+  and citing. Thank you! </small>"),
+             imageWidth = 180,imageHeight = 180,closeOnClickOutside=FALSE,closeOnEsc=FALSE,
+             confirmButtonText="I accept",size = "m",
+             showCancelButton=TRUE,cancelButtonText="I decline",html=TRUE,
+             confirmButtonCol="#8bb8e8",
+             callbackR = function(x) {
+               if (!x) welcomeMessage()
+             })
+}
+
+## Welcome message
+welcomeMessageOld <- function() {
   shinyalert(paste("Welcome to", appName," <br><small>By clicking the 'I accept' button and using the eSPC Software, 
   you agree to be bound by the
   terms of this <a href='eSPC_academicSoftwareLicenseAgreement _EMBLEM.pdf' target='_blank' rel='noopener noreferrer'>Academic Software License Agreement</a>. You acknowledge that this Agreement
@@ -12,7 +26,7 @@ welcomeMessage <- function() {
              showCancelButton=TRUE,cancelButtonText="I decline",html=TRUE,
              confirmButtonCol="#8bb8e8",
              callbackR = function(x) {
-               if (!x) welcomeMessage()
+               if (!x) welcomeMessageOld()
              })
 }
 
