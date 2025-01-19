@@ -39,15 +39,10 @@ shinyUI(dashboardPage(
       ),
   
   dashboardBody(theme_grey_light,
-                
-                tags$style(HTML("
-      iframe {
-        width: 80%;
-        height: 100vh;
-        border: none;
-      }
-    ")), 
-                
+
+    includeHTML("www/banner.html"),
+    includeScript("www/banner.js"),
+
     tabItems(
       tabItem(
         tabName = "menu_input",

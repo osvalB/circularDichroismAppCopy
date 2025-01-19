@@ -1,2 +1,2 @@
 options(browser='google-chrome-stable')
-shiny::runApp('/home/os/spc_shiny_servers/circularDichroismApp/appFiles/ChiraKit')
+shiny::runApp('/home/osvaldo/circularDichroismApp/appFiles/ChiraKit')
