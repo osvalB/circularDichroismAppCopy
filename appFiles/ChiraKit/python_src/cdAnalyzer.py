@@ -2807,8 +2807,6 @@ class CdAnalyzer:
 
         return None
 
-
-
 test4 = False
 
 if test4:
