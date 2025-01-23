@@ -30,28 +30,40 @@
 
 <div id="Overview" style="display:none">
   
-    <p class="vf-intro__text">Welcome! Here you'll find some tutorials to become a ChiraKit profi: </p>
+    <p class="vf-intro__text">
+        Welcome! Here you'll find some tutorials to become a ChiraKit profi: </p>
    
  <ol class="vf-intro__text">
-<li class="vf-list__item "> Basic manual processing of protein and buffer spectra
+<li class="vf-list__item ">
+    Basic manual processing of protein and buffer spectra
 </li>
 
-<li class="vf-list__item "> Basic automatic processing of protein and buffer spectra
+<li class="vf-list__item ">
+    Basic automatic processing of protein and buffer spectra
 </li>    
    
-<li class="vf-list__item "> Analysis of protein melting curves using a single-wavelength approach
+<li class="vf-list__item ">
+    Analysis of protein melting curves using a single-wavelength approach
 </li>    
    
-<li class="vf-list__item "> SVD based analysis of protein melting curves
+<li class="vf-list__item ">
+    Singular value decomposition (SVD)-based analysis of protein melting curves
 </li>    
 
-<li class="vf-list__item "> Calculation of secondary structure with Selcon3 
+<li class="vf-list__item ">
+    Calculation of secondary structure with Selcon3
 </li>   
   
-<li class="vf-list__item "> Estimation of DNA-ligand binding affinities
+<li class="vf-list__item ">
+    Estimation of DNA-ligand binding affinities
 </li>   
 
-<li class="vf-list__item "> Calculation of secondary structure with SESCA
+<li class="vf-list__item ">
+    Calculation of secondary structure with SESCA
+</li>
+
+<li class="vf-list__item ">
+    Analysis of a protein dimer chemical denaturation curve
 </li>
 
  </ol>    
@@ -454,7 +466,7 @@ Upload the 'R78907' files as 'Sample files' and the 'R78906' files as 'Baseline 
 </li>
 
 <li class="vf-list__item ">
-    Import the file into ChiraKit, in “Custom” input mode. Set the wavelength range to 210 - 280 nm to remove noisy data.
+    Import the file into ChiraKit, in "Custom" input mode. Set the wavelength range to 210 - 280 nm to remove noisy data.
 </li>
 
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
@@ -495,7 +507,7 @@ Upload the 'R78907' files as 'Sample files' and the 'R78906' files as 'Baseline 
 <br>
 
 <li class="vf-list__item ">
-    Select the  ‘N ⇌ U’ '(Equilibrium Two-State') unfolding model,
+    Select the  'N ⇌ U' (Equilibrium Two-State) unfolding model,
     activate the 'Fit unfolded slope' option and fit the thermal unfolding curves by clicking on '2d Fit data'.
 </li>
 
@@ -530,7 +542,7 @@ Upload the 'R78907' files as 'Sample files' and the 'R78906' files as 'Baseline 
 </div>
 
 <div class="vf-section-header"><a class="vf-section-header__heading vf-section-header__heading--is-link" href="JavaScript:Void(0);" id="section-link"
-                                  onclick="myFunction('tutorial4')">4) Singular value decomposition (SVD) based analysis of protein melting curves<svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                  onclick="myFunction('tutorial4')">4) Singular value decomposition (SVD)-based analysis of protein melting curves<svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z" fill="" fill-rule="nonzero"></path>
     </svg></a></div>
 
@@ -550,7 +562,7 @@ Upload the 'R78907' files as 'Sample files' and the 'R78906' files as 'Baseline 
 </li>
 
 <li class="vf-list__item ">
-    Import the file into ChiraKit  in “Custom” input mode. Set the wavelength range to 210 - 280 nm to remove noisy data.
+    Import the file into ChiraKit in "Custom" input mode. Set the wavelength range to 210 - 280 nm to remove noisy data.
 </li>
 
 
@@ -782,7 +794,6 @@ The CD spectra of OpcA and Wheat germ agglutinin were published in
 activate the 'Log scale for the x-axis' option.
 </li>    
 
-<br>
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto6.2.png" alt="" width="1000" loading="lazy"/>
 </figure>
@@ -794,7 +805,6 @@ activate the 'Log scale for the x-axis' option.
 <li class="vf-list__item "> Click on '2f. Get initial estimates' and subsequently on '2e. Fit data'.
 </li> 
 
-<br>
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto6.3.png" alt="" width="1000" loading="lazy"/>
 </figure>
@@ -803,7 +813,6 @@ activate the 'Log scale for the x-axis' option.
 <li class="vf-list__item "> Inspect the fitted parameters. The Kd should be in the micromolar range (10^'logTenOfKd').
 </li> 
 
-<br>
 
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto6.4.png" alt="" width="800" loading="lazy"/>
@@ -854,7 +863,6 @@ The CD spectrum of Myoglobin was published in
     should be around 70-80%.
 </li>
 
-     <br>
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto7.1.png" alt="" width="1000" loading="lazy"/>
 </figure>
@@ -869,7 +877,6 @@ The CD spectrum of Myoglobin was published in
     was part of the SESCA training set, and 2) the secondary structure content is mainly alpha.
 </li>
 
-<br>
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto7.2.png" alt="" width="1000" loading="lazy"/>
 </figure>
@@ -879,6 +886,122 @@ The CD spectrum of Myoglobin was published in
     Congratulations: you have successfully estimated the percentage of secondary structure elements using the SESCA algorithm.
     Some extra tips: For beta-rich proteins, we recommend the HBSS (or HBSS-3SC1) basis set.
     For proteins with a high percentage of turns, we recommend the DS5-4 (or DS5-4SC1) basis set.<br>
+</li>
+
+</ol>
+
+</div>
+
+<div class="vf-section-header"><a class="vf-section-header__heading vf-section-header__heading--is-link" href="JavaScript:Void(0);" id="section-link"
+                                  onclick="myFunction('tutorial8')">8)  Analysis of a protein dimer chemical denaturation curve
+    <svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z" fill="" fill-rule="nonzero"></path>
+    </svg></a></div>
+
+<div id="tutorial8" style="display:none">
+
+ <ol class="vf-intro__text">
+
+
+<li class="vf-list__item ">
+    Download the file <a href="trp_repressor_urea_unfolding.csv" download>trp_repressor_urea_unfolding.csv</a>.
+    The data corresponds to the chemical denaturation of the Trp repressor by urea, monitored by circular dichroism, as published by Andrew N. Lane and Oleg Jardetzky (1986).
+    The data was digitised from Figure 3 of the paper.
+</li>
+
+<li class="vf-list__item ">
+    Inside the '1. Input' section, choose 'Processed data (chemical)' as the input mode and import the file.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.1.png" alt="" width="300" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Navigate to the 'Chemical unfolding' panel (Section '2. Analysis').
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.2.png" alt="" width="300" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    You should observe a chemical denaturation curve with two transitions. Therefore, the dimer unfolds via an intermediate state.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.3.png" alt="" width="900" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    In the original paper, two models were tested: one with a dimeric intermediate ('N2 ⇌ I2 ⇌ 2U'),
+    and one with a monomeric intermediate ('N2 ⇌ 2I ⇌ 2U').
+    These models were referred to as Model II and Model III, respectively.
+    Let's start with Model III by selecting the corresponding model and pressing on the button
+    '2d. Fit data'.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.4.png" alt="" width="500" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Select the 'Fitted curves' tab to view the fitted curves. They match the experimental data, right?
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.5.png" alt="" width="900" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Select the 'Relative errors' tab to view the relative errors of the fitted parameters.
+    You should notice that the errors are extremely high for the D50step1 and M1 parameters.
+    This indicates that Model III may not be adequate.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.6.png" alt="" width="900" loading="lazy"/>
+</figure>
+<br>
+
+ <li class="vf-list__item ">
+    Now select the Model II and press on the button '2d. Fit data'.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.7.png" alt="" width="300" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    You probably got an error because the initial estimates are not good enough.
+    To help the fitting algorithm, set the initial guess of D50 to 4.
+    Then, press on '2d. Fit data'.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.8.png" alt="" width="300" loading="lazy"/>
+</figure>
+<br>
+
+ <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto8.9.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Check the 'Fitted parameters' tab and the 'Relative errors' tab to analyze the numerical results of the fit.
+    The fitted parameters should have lower relative errors than in Model III, indicating that Model II is more appropriate.
+    Indeed, the authors of the original paper concluded that the Trp repressor unfolds via a dimeric intermediate after performing more experiments.
+</li>
+
+<li class="vf-list__item ">
+    Congratulations! You have successfully fitted reversible three-state chemical unfolding models to obtain the unfolding parameters of a protein dimer.
 </li>
 
 </ol>
