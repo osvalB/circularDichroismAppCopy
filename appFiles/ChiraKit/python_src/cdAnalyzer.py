@@ -18,7 +18,6 @@ sys.path.append('./Dichroic-CD-model-main')
 from single_fit_dichroic_estimator import *
 from HC_thermal_fit                import *
 
-from scipy.optimize  import minimize
 """
 Classes for the analysis of circular dichroism data
 Code written by Osvaldo Burastero 
@@ -169,7 +168,7 @@ class CdExperimentGeneral:
 
         return None
 
-    def load_data(self, file, name=''):
+    def load_data_fx(self, file, name=''):
 
         file_type = detect_file_type(file)
 
@@ -266,11 +265,6 @@ class CdExperimentGeneral:
 
         self.spectraNames = self.internalID
 
-        # Verify that the wavelength is numeric
-        is_arr_numeric = np.issubdtype(self.wavelength.dtype, np.number)
-        if not is_arr_numeric:
-            raise TypeError("The wavelength array is not numeric. Please provide a numeric array.")
-
         self.units = guess_input_units_from_metadata_dictionary(self.metadata)
 
         self.numberOfCroms = guess_parameter_from_metadata_dictionary(self.metadata, ['chromophore', 'ncrom'])
@@ -287,10 +281,39 @@ class CdExperimentGeneral:
 
         # Use the sorted_indices to rearrange the rows of the matrix
         self.signalInput = self.signalInput[sorted_indices]
-        self.wavelength = self.wavelength[sorted_indices]
-        self.signalHT = self.signalHT[sorted_indices]
+        self.wavelength  = self.wavelength[sorted_indices]
+        self.signalHT    = self.signalHT[sorted_indices]
 
         return None
+
+    def load_data(self, file, name=''):
+
+        try:
+
+            self.load_data_fx(file, name)
+
+            # Verify that the wavelength is numeric
+            is_arr_numeric = np.issubdtype(self.wavelength.dtype, np.number)
+
+            if not is_arr_numeric:
+
+                error_message = "The wavelength array is not numeric. Please provide a numeric array."
+                return False, error_message
+
+            # Verify that the signal contains value different from zero
+            is_matrix_non_zero = np.any(self.signalInput != 0)
+
+            if not is_matrix_non_zero:
+
+                error_message = "The signal matrix contains only zeros. Please provide a valid signal matrix."
+                return False, error_message
+
+            return True, 'NA'
+
+        except:
+
+            error_message = "An error occurred while loading the data. Please check the file format and try again."
+            return False, error_message
 
     def init_and_check_helicity_method(self):
 
@@ -2626,22 +2649,16 @@ class CdAnalyzer:
         if name in self.experimentNames:
             return "Experiment name already selected!"
 
-        try:
+        cd_experiment             = CdExperimentGeneral()
+        file_was_loaded, message  = cd_experiment.load_data(file, name)
 
-            self.experimentsOri[name] = CdExperimentGeneral()
-            self.experimentsOri[name].load_data(file, name)
+        if file_was_loaded:
 
+            self.experimentsOri[name] = cd_experiment
             self.experimentNames.append(name)
 
-            # Adapt the number of significant digits
-
-            return "Data loaded successfully!!!"
-
-        except:
-
-            pass
-
-        return "Data could not be loaded"
+        # Return a list to handle in the R shiny app
+        return [file_was_loaded, message]
 
     def delete_experiment(self, names):
 
@@ -2656,6 +2673,7 @@ class CdAnalyzer:
 
             try:
                 del self.experimentsModif[name]
+
             except:
                 pass
 

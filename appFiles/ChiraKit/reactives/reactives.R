@@ -84,11 +84,10 @@ load_one_experiment <- function(cd_data_file,name,inputUnits = 'millidegrees') {
       
       load <- cdAnalyzer$load_experiment(cd_data_file,name)
       
-      # Catch exception when data has wrong format
-      if (load != "Data loaded successfully!!!") {
-        shinyalert(text = paste("<b>The file was not loaded! Please verify the file format (User guide).</b>"),
-                   type = "warning",closeOnEsc = T,closeOnClickOutside = T,
-                   html=T)
+      # Catch exception when file has wrong format/data
+      if (!load[[1]]) {
+
+        popUpWarning(paste0("<b>",load[[2]],"</b>"))
         return(NULL)
       }
       
@@ -240,17 +239,18 @@ observeEvent(input$cdFiles,{
       
     }
   }
-  
-  # Copy experiments to allow modifying the wavelength range
-  cdAnalyzer$initialize_experiment_modif()
-  
-  updateMaxVoltageValue()
-  
-  renderInputData()
-  
+
   Sys.sleep(0.5)
-  reactives$data_loaded <- TRUE
-  
+
+  # Check that we have at least one experiment
+  if (length(cdAnalyzer$experimentNames) > 0) {
+      # Copy experiments to allow modifying the wavelength range
+    cdAnalyzer$initialize_experiment_modif()
+    updateMaxVoltageValue()
+    renderInputData()
+    reactives$data_loaded <- TRUE
+  }
+
 },priority = 10)
 
 # Modal dialog to ask for the input and desired units
@@ -781,6 +781,8 @@ observeEvent(input$triggerDeletion,{
   } else {
     output$cdFilesInfo    <- NULL
     output$proccesingInfo <- NULL
+
+    updateSliderInput(session,'wavelengthRange',label=NULL,min=180,max=300,value = c(180,300))
     
     updateSelectInput(session,"experiment2delete",choices = c('None'))
     reactives$data_loaded <- FALSE

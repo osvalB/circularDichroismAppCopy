@@ -708,6 +708,8 @@ def read_dat_file_meta_data(file):
     # Return the extracted metadata dictionary
     return metadata
 
+def remove_repeated_elements_pcd(lst):
+    return [element for index, element in enumerate(lst) if index % 2 == 1 or index == 0]
 
 def read_pccdb_file_data(file):
     # Open the file for reading
@@ -733,6 +735,26 @@ def read_pccdb_file_data(file):
             for l in ls[data_begin:]
             if len(l.split()) == len(spectra_names) and "CALIBRATION" not in l
         ]
+
+        # If no data, find why
+        if len(column_values) == 0:
+
+            # Sometimes the wavelength column is repeated
+            column_values = [
+                l.split()
+                for l in ls[data_begin:]
+                if len(l.split()) == (len(spectra_names)-1)*2 and "CALIBRATION" not in l
+            ]
+
+            # Or indeed, there is no data
+            if len(column_values) == 0:
+
+                return np.zeros(1), np.zeros((1, 1)), ["NA"], np.zeros((1, 1))
+
+            else:
+
+                # Remove the repeated columns (wavelength), except the first one
+                column_values = [remove_repeated_elements_pcd(lst) for lst in column_values]
 
         # Convert the list of column values to a numpy array (spectrum data)
         spectra = np.array(column_values, dtype="float")
