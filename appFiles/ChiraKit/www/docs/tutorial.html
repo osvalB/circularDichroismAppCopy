@@ -30,8 +30,9 @@
 
 <div id="Overview" style="display:none">
   
-    <p class="vf-intro__text">
-        Welcome! Here you'll find some tutorials to become a ChiraKit profi: </p>
+<p class="vf-intro__text">
+    Welcome! Here you'll find some tutorials to become a ChiraKit profi:
+</p>
    
  <ol class="vf-intro__text">
 <li class="vf-list__item ">
@@ -64,6 +65,10 @@
 
 <li class="vf-list__item ">
     Analysis of a protein dimer chemical denaturation curve
+</li>
+
+<li class="vf-list__item ">
+    Analysis of peptide helicity
 </li>
 
  </ol>    
@@ -902,7 +907,6 @@ The CD spectrum of Myoglobin was published in
 
  <ol class="vf-intro__text">
 
-
 <li class="vf-list__item ">
     Download the file <a href="trp_repressor_urea_unfolding.csv" download>trp_repressor_urea_unfolding.csv</a>.
     The data corresponds to the chemical denaturation of the Trp repressor by urea, monitored by circular dichroism, as published by Andrew N. Lane and Oleg Jardetzky (1986).
@@ -1002,6 +1006,121 @@ The CD spectrum of Myoglobin was published in
 
 <li class="vf-list__item ">
     Congratulations! You have successfully fitted reversible three-state chemical unfolding models to obtain the unfolding parameters of a protein dimer.
+</li>
+
+</ol>
+
+</div>
+
+<div class="vf-section-header"><a class="vf-section-header__heading vf-section-header__heading--is-link" href="JavaScript:Void(0);" id="section-link"
+                                  onclick="myFunction('tutorial9')">9) Analysis of peptide helicity
+    <svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z" fill="" fill-rule="nonzero"></path>
+    </svg></a></div>
+
+<div id="tutorial9" style="display:none">
+
+<p class="vf-intro__text">
+    This tutorial contains two sections.
+    In the first section, we estimate the helicity of a peptide using the CD signal at 222 nm.
+    In the second section, we analyse thermal denaturation CD curves of intrinsically disordered peptides with transient helicity.
+    Both sections are based on the work of <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpcb.3c07511" target="_blank" rel="noopener noreferrer">Zavrtanik, Uroš <i>et al.</i>, 2024</a>.
+</p>
+
+ <br>
+
+ <ol class="vf-intro__text">
+
+<li class="vf-list__item ">
+    Inside the '1. Input' section, using 'Custom' as input mode, load the file <a href="PaaA2_spectrum_25C.csv" download>PaaA2_spectrum_25C.csv</a>.
+    Choose 'Mean unit molar ellipticity' both as 'Input units' and as 'Working units'.
+    Ensure that the number of peptide units (#Chromophore units) is specified under the Parameters for molar ellipticity / extinction section.
+    The peptide PaaA2 has 29 peptide units.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto9.1.png" alt="" width="700" loading="lazy"/>
+</figure>
+<br>
+
+ <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto9.2.png" alt="" width="500" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Navigate to the Analysis tab and select the 2f. Peptide helicity module. Click on 'Initialize the peptide dataset' to prepare the data for analysis.
+    In the dataset table, input the temperature(s) of the measurement(s). In this case, 25°C.
+    Click on 'Fit peptide helicity' to fit the data using the ensemble model.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto9.3.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    The output is estimated helicity reported as a value in the range [0.0–1.0] and Lifson-Roig propagation (w) parameter that indicates overall helical propensity of the peptide.
+</li>
+
+  <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto9.4.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Now, we'll analyse the thermal denaturation curve of a peptide with transient helicity.
+</li>
+
+<li class="vf-list__item ">
+    Ensure that 'Processed data (thermal)' mode is selected under the '1. Input' mode section and load the file
+    <a href="PaaA2_thermal_data.csv" download>PaaA2_thermal_data.csv</a>.
+    The first column should contain the temperature array.
+    The second column should contain the processed thermal ellipticity data at 222 nm, represented as the mean unit molar ellipticity.
+    Ensure the unit of ellipticity is deg·cm<sup>2</sup>·dmol<sup>-1</sup>·chromophore<sup>-1</sup>.
+</li>
+
+  <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto9.5.png" alt="" width="300" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Navigate to Thermal unfolding panel (2a) under Analysis tab. Under Unfolding model (Fitting) choose the 'Helix ⇋ Unfolded (Peptide)' model.
+</li>
+
+<li class="vf-list__item ">
+    Specify the number of peptide bonds (chromophores).
+    For N-acetylated, C-amidated peptides, set the value to Nresidues + 1.
+    For uncapped peptides, set the value to Nresidues - 1.
+    In this case, set the value to 29.
+</li>
+
+  <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto9.6.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Fit the data by pressing the 'Fit data' button.
+</li>
+
+<li class="vf-list__item ">
+    After the fitting procedure is successfully completed, the results are displayed in multiple tabs.
+    The data points and fitted curve (solid line) are shown under the 'Fitted melting curves' tab.
+    The fitted parameters are available under the 'Fitted parameters' tab,
+    while the estimated helicity as a function of temperature is displayed under the 'Fractions' tab.
+    In this case, we observe that the disordered fraction does not start at 0.
+    This is in contrast to proteins, where the unfolded fraction typically starts at 0.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto9.7.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Note: Apply this thermal denaturation model only for peptides that adopt helix or coil conformations.
 </li>
 
 </ol>
