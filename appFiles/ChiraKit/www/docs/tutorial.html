@@ -325,7 +325,7 @@ Click 'Apply' to execute the processing step and press the submit button in the 
 </li>
 
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto1.26.png" alt="" width="500" loading="lazy"/>
+<img src="tuto1.26.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
 
@@ -344,40 +344,49 @@ Click 'Apply' to execute the processing step and press the submit button in the 
 
 <div id="tutorial2" style="display:none">
 
- <ol class="vf-intro__text">
-<li class="vf-list__item ">Download the files <a href="R78906.d01" download>R78906.d01</a>,
- <a href="R78906.d02" download>R78906.d02</a>, <a href="R78906.d03" download>R78906.d03</a>,
- <a href="R78907.d01" download>R78907.d01</a>, <a href="R78907.d02" download>R78907.d02</a> 
- and <a href="R78907.d03" download>R78907.d03</a>. These files contain CD measurements of a protein sample ('R78907') and the corresponding buffer ('R78906'),  kindly provided by Nykola Jones from Aarhus University, Denmark.  
+<ol class="vf-intro__text">
+
+<li class="vf-list__item ">
+    Download this <a href="chirakit_files_example.zip" download>zip file</a> which contains the files R78906.d01, R78906.d02, R78906.d03, R78907.d01, R78907.d02 and R78907.d03 and
+    extract them onto your computer. The files are CD measurements of a protein sample ('R78907')
+    and the corresponding reference buffer ('R78906'), kindly provided by Nyk Jones from Aarhus University, Denmark.
 </li>
 
 <li class="vf-list__item "> Set the 'Input mode' to 'Automatic baseline subtraction'. 
 Upload the 'R78907' files as 'Sample files' and the 'R78906' files as 'Baseline files'.
 </li> 
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto2.1.png" alt="" width="400" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Click on the 'Process data' button. Use 'millidegrees' as input units and 'mean unit molar extinction' as desired units.
+<li class="vf-list__item ">
+    Click on the 'Process data' button. In the pop-up window that appears,
+    set 'millidegrees' as input units and 'mean unit molar extinction' as desired units of the final spectrum.
 </li> 
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto2.2.png" alt="" width="400" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Enter the required experimental details.  <br>
-Concentration: 1.3 mg/ml <br>
-Molecular weight: 14300 <br>
-Path length: 0.1 mm <br>
-Number of peptide bonds: 128 
+
+<li class="vf-list__item ">
+    If you want to zero the data at long wavelengths,
+    check the box next to "Subtract the average signal of the highest 10 nm wavelength interval from the final CD spectrum?"
+</li>
+
+<li class="vf-list__item "> In the next pop-up window, enter the required experimental details.  <br>
+    Path length: 0.1 mm <br>
+    Molecular weight: 14300 <br>
+    Concentration: 1.3 mg/ml <br>
+    Number of chromophore units (peptide bonds): 128
 </li> 
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto2.3.png" alt="" width="500" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Press 'Submit' and wait some seconds. The finalised spectrum should appear. 
+<li class="vf-list__item "> Press 'Submit' and wait a few seconds. The finalised spectrum should appear.
 </li> 
 <br>
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
@@ -387,12 +396,45 @@ Number of peptide bonds: 128
 <li class="vf-list__item "> Adjust the 'HT max value' parameter to 6.5. The wavelength range should automatically update (to 178 - 330 nm). 
 </li> 
 
-<li class="vf-list__item "> 
-Go to the 'Export data' panel. Using the 'Specific CD curve(s)' option, export the 'Baseline subtracted' spectrum in delta epsilon units.
-</li>
+<div style="display: flex; justify-content: center; gap: 2px;">
+  <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+    <img src="tuto2.5.png" alt="" width="1000" loading="lazy"/>
+  </figure>
+  <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+    <img src="tuto2.6.png" alt="" width="1000" loading="lazy"/>
+  </figure>
+</div>
+<br>
 
 <li class="vf-list__item "> 
-Congratulations! You have successfully processed CD measurements in an automated fashion, obtaining a baseline-subtracted spectrum in delta epsilon units.
+    Go to the 'Export data' panel and export the "baseline subtracted" spectrum in delta epsilon units by selecting it from the pull down list and choosing "Specific curve(s)".
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto1.24.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    A file dialogue window will open prompting the saving of the output text file containing the spectral data selected.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto2.7.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    In order to know how the data was processed, the logbook file should also be downloaded and saved with the processed spectrum.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto1.26.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item "> 
+    Congratulations! You have successfully processed CD measurements in an automated fashion, obtaining a baseline-subtracted spectrum in delta epsilon units.
 </li>
 
  </ol>
@@ -406,109 +448,202 @@ Congratulations! You have successfully processed CD measurements in an automated
 <div id="tutorial3" style="display:none">
 
  <ol class="vf-intro__text">
-<li class="vf-list__item ">Download the file <a href="thermalRampChirascan.csv" download>thermalRampChirascan.csv</a>, kindly provided by Osvaldo Burastero from European Molecular Biology Laboratory (EMBL), Hamburg, Germany. This file contains a thermal denaturation experiment of a protein sample. 
+<li class="vf-list__item ">
+    Download the file <a href="thermalRampChirascan.csv" download>thermalRampChirascan.csv</a>.
+    This file contains the thermal denaturation experiment data of a protein sample measured using a benchtop CD instrument.
 </li>
 
-<li class="vf-list__item "> Import the file into ChiraKit. Set the wavelength range to 210 - 280 nm to remove noisy data.
-</li> 
-<br>
-<figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto3.1.png" alt="" width="900" loading="lazy"/>
-</figure>
-<br>
-<li class="vf-list__item "> Navigate to the 'Thermal unfolding' panel (Section '2. Analysis').
-Press on '2a. Create dataset'. Then press on '2c. Find wavelength'. 
-</li> 
+<li class="vf-list__item ">
+    Import the file into ChiraKit, in “Custom” input mode. Set the wavelength range to 210 - 280 nm to remove noisy data.
+</li>
 
-<li class="vf-list__item "> Explore how the CD signal changes according to the different proposed wavelengths. Then set the 'Selected wavelength(s)' to '220-226'.
-</li> 
-<br>
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto3.1.png" alt="" width="400" loading="lazy"/>
+</figure>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto3.2.png" alt="" width="700" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Select the 'Equilibrium Two-State' unfolding model, activate the 'Fit unfolded slope' option and fit the thermal unfolding curves by clicking on '2d Fit data'. 
+
+<li class="vf-list__item ">
+        Open the ‘Thermal unfolding’ panel (Section '2. Analysis').
 </li> 
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto3.3.png" alt="" width="1000" loading="lazy"/>
+<img src="tuto3.3.png" alt="" width="250" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Congratulations! You have successfully fitted a reversible two-state unfolding model to obtain the melting temperature of a protein sample. 
+
+<li class="vf-list__item ">
+    Once inside the ‘Thermal unfolding’ panel, on the ‘2. Fitting’ section
+    press on '2a. Create dataset'. Then, press on '2c. Find wavelength'.
 </li>
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto3.4.png" alt="" width="700" loading="lazy"/>
+<img src="tuto3.4.png" alt="" width="900" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Explore how the CD signal changes according to the different proposed wavelengths. Then set the 'Selected wavelength(s)' to '220-226'.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto3.5.png" alt="" width="600" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Select the  ‘N ⇌ U’ '(Equilibrium Two-State') unfolding model,
+    activate the 'Fit unfolded slope' option and fit the thermal unfolding curves by clicking on '2d Fit data'.
+</li>
+
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto3.6.png" alt="" width="700" loading="lazy"/>
 </figure>
 
- </ol>
+<br>
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto3.7.png" alt="" width="700" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Check the "Fitted Parameters" tab to analyze the numerical results of the fit.
+</li>
+
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto3.8.png" alt="" width="700" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+   Congratulations! You have successfully fitted a reversible two-state unfolding
+    model to obtain the melting temperature of a protein sample.
+</li>
+
+</ol>
 
 </div>
 
-<div class="vf-section-header"><a class="vf-section-header__heading vf-section-header__heading--is-link" href="JavaScript:Void(0);" id="section-link" onclick="myFunction('tutorial4')">4) SVD based analysis of protein melting curves<svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
+<div class="vf-section-header"><a class="vf-section-header__heading vf-section-header__heading--is-link" href="JavaScript:Void(0);" id="section-link"
+                                  onclick="myFunction('tutorial4')">4) Singular value decomposition (SVD) based analysis of protein melting curves<svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z" fill="" fill-rule="nonzero"></path>
     </svg></a></div>
 
 <div id="tutorial4" style="display:none">
 
 <p class="vf-intro__text">
-To use the whole wavelength range information and reduce noise, we can decompose the CD signal into a set of basis spectra and their associated coefficients. Subsequently, instead of fitting the CD signal at a certain wavelength, we fit the SVD coefficients.
-</p> 
+    In this section, we will analyze the same dataset as in Tutorial #3 using Singular Value Decomposition (SVD).
+    SVD helps reduce noise and utilize the entire spectral range by decomposing the spectra into a
+    set of basis spectra and their corresponding coefficients.
+</p>
+
 <br>
  <ol class="vf-intro__text">
-<li class="vf-list__item ">Download the file <a href="thermalRampChirascan.csv" download>thermalRampChirascan.csv</a>, kindly provided by Osvaldo Burastero from European Molecular Biology Laboratory (EMBL), Hamburg, Germany. This file contains a thermal denaturation experiment of a protein sample. 
+<li class="vf-list__item ">
+    Download the file <a href="thermalRampChirascan.csv" download>thermalRampChirascan.csv</a>.
+    This file contains the thermal denaturation experiment data of a protein sample measured using a benchtop CD instrument.
 </li>
 
-<li class="vf-list__item "> Import the file into ChiraKit. Set the wavelength range to 210 - 280 nm to remove noisy data.
-</li> 
-<br>
+<li class="vf-list__item ">
+    Import the file into ChiraKit  in “Custom” input mode. Set the wavelength range to 210 - 280 nm to remove noisy data.
+</li>
+
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto3.1.png" alt="" width="900" loading="lazy"/>
+<img src="tuto3.1.png" alt="" width="400" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Navigate to the 'Thermal unfolding' panel (Section '2. Analysis').
-Press on '2a. Create dataset'. Then change the analysis method to 'Spectra decomposition (SVD)'. 
-</li> 
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto3.2.png" alt="" width="700" loading="lazy"/>
+</figure>
 <br>
+
+<li class="vf-list__item ">
+    Open the ‘Thermal unfolding’ panel (Section '2. Analysis').
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto3.3.png" alt="" width="252" loading="lazy"/>
+</figure>
+<br>
+
+ <li class="vf-list__item ">
+    Press on '2a. Create dataset'. Then change the analysis type (2b) to 'Spectra decomposition (SVD)'.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto4.1.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto4.2.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
+
+<li class="vf-list__item ">
+    Click on '2c. Decompose spectra'. Explore the tabs 'Basis spectra', 'Reconstructed spectra', 'Explained variance' and 'Coefficients' tabs.
+</li>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto4.3.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Click on '2c. Decompose spectra'. Explore the tabs
-'Basis spectra', 'Reconstructed spectra', 'Explained variance' and 'Coefficients' tabs.
+
+<li class="vf-list__item ">
+    The first acquired spectrum (20°C) appears to be an outlier.
+    To remove it, right-click on the dataset labeled "thermalRampChirascan 20.0" in the "1. Temperature Data" table and
+    select "Remove row."
+    To proceed with the analysis, create a new dataset by clicking the "Create dataset" button (2a),
+    choosing "Spectra decomposition (SVD)" as the Analysis type (2b), and decomposing the spectra again by clicking the
+    "2c. Decompose spectra" button.
 </li>
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto4.4.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> The first acquried spectrum seems to be an outlier. To remove it, right click the '1. Temperature data' Table and press 'Remove row'. Subsequently, create the dataset and find the basis spectra again.
-</li>
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto4.5.png" alt="" width="1200" loading="lazy"/>
+<img src="tuto4.5.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Activate the 'Fit unfolded slope' option and fit the thermal unfolding curves by clicking on '2f. Fit data'.  
-</li> 
-<br>
+
+<li class="vf-list__item ">
+    Select the  'N ⇌ U' ('Equilibrium Two-State') unfolding model,
+    activate the 'Fit unfolded slope' option and fit the thermal unfolding curves by clicking on '2f Fit data'.
+</li>
+
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto4.6.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Congratulations! You have successfully 1) applied the SVD algorithm to find a basis spectrum, and 2) fitted a reversible two-state unfolding model to obtain the melting temperature of a protein sample.
-</li>
-<br>
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto4.7.png" alt="" width="600" loading="lazy"/>
+<img src="tuto4.7.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
-<li class="vf-list__item "> Extra step: compare the obtained parameters with the ones from the Tutorial #3. Consider the robustness of each approach. <br>
-Tip: when comparing samples, always use the same analysis method.
+
+ <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto4.8.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Congratulations! You have successfully 1) applied the SVD algorithm to find a basis spectrum,
+    and 2) fitted a reversible two-state unfolding model (N ⇌ U) to obtain the melting temperature of a protein sample.
+</li>
+
+
+<li class="vf-list__item ">
+    Extra step: compare the obtained parameters with the ones from the Tutorial #3.
+    Consider the robustness of each approach. Tip: when comparing samples, always use the same analysis method.
 </li>
 
  </ol>
@@ -521,65 +656,78 @@ Tip: when comparing samples, always use the same analysis method.
 
 <div id="tutorial5" style="display:none">
 
+<p class="vf-intro__text">
+    In this section, we will estimate the secondary structure content of two well-studied proteins using the Selcon3 method.
+    The Selcon3 method is a self-consistent procedure for estimating the secondary structure content of proteins.
+    It compares the experimental CD spectrum with a set of reference spectra
+    to estimate the percentage of secondary structure elements.
+</p>
+<br>
  <ol class="vf-intro__text">
 <li class="vf-list__item ">Download the file <a href="Myoglobin.csv" download>Myoglobin.csv</a> and
- <a href="OpcA.csv" download>OpcA.csv</a>. These files contain the spectra in delta epsilon units of  Myoglobin and OpcA. The data was downloaded from the Protein Circular Dichroism Data Bank
+ <a href="OpcA.csv" download>OpcA.csv</a>. These files contain the spectra in delta epsilon units (Mean unit molar extinction) of Myoglobin and OpcA. The data was downloaded from the Protein Circular Dichroism Data Bank
 <a href="https://www.sciencedirect.com/science/article/pii/S0022283622000018" target="_blank" rel="noopener noreferrer">(Ramalli, Sergio Gomes <i>et al.</i>, 2022)</a>. 
 The CD spectrum of Myoglobin was published in
 <a href="https://academic.oup.com/bioinformatics/article/22/16/1955/208282" target="_blank" rel="noopener noreferrer">Lees, Jonathan G. <i>et al.</i>, 2006</a>. 
-The CD spectra of OpcA and Wheat germ agglutinin was published in 
+The CD spectra of OpcA and Wheat germ agglutinin were published in
 <a href="https://academic.oup.com/bioinformatics/article/27/12/1630/257074" target="_blank" rel="noopener noreferrer">Abdul-Gader, Ali <i>et al.</i>, 2011</a>.
 </li>
 
-<li class="vf-list__item "> Import the two files simultaneously. Set the 'Input units' and the 'Working units' to mean unit molar extinction'.
+<li class="vf-list__item ">
+    Import the two files simultaneously. Set the 'Input units' and the 'Working units' to mean unit molar extinction'.
 </li> 
 
-<br>
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto5.1a.png" alt="" width="500" loading="lazy"/>
+<img src="tuto5.1.png" alt="" width="700" loading="lazy"/>
 </figure>
 <br>
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto5.1b.png" alt="" width="500" loading="lazy"/>
-</figure>
-<br>
-<figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto5.2.png" alt="" width="1000" loading="lazy"/>
+<img src="tuto5.2.png" alt="" width="700" loading="lazy"/>
 </figure>
 <br>
 
 <li class="vf-list__item ">
-    Navigate to the 'Secondary structure estimation' panel (Section '2. Analysis').
-    Set the 'Analysis mode' to 'SELCON'.
-    Adjust the 'Lower WL' parameter to 180. As a result, the AU-SMP18 reference dataset, comprising soluble and membrane proteins, will be used. Press on 'Run estimation!'.
-</li>    
+    Navigate to the 'Protein secondary structure' panel (Section '2. Analysis').
+</li>
 
-<li class="vf-list__item "> You should be able to see the percentage of each secondary structure elements and the fitted spectra.
-</li> 
-
-<br>
-<figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto5.3.png" alt="" width="900" loading="lazy"/>
+ <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto5.3.png" alt="" width="250" loading="lazy"/>
 </figure>
 <br>
 
+<li class="vf-list__item ">
+    Set the 'Analysis mode' to 'SELCON'. Adjust the 'Lower WL' parameter to 180.
+    As a result, the AU-SMP18 reference dataset, comprising soluble and membrane proteins, will be used.
+    Press on 'Run estimation!'.
+</li> 
+
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto5.4.png" alt="" width="500" loading="lazy"/>
+<img src="tuto5.4.png" alt="" width="700" loading="lazy"/>
 </figure>
 <br>
 
-<li class="vf-list__item "> Congratulations! You have successfully estimated the percentage of secondary structure elements using the Selcon3 algorithm and the AU-SMP180 reference dataset.
+<li class="vf-list__item ">
+    You should be able to see the percentage of each secondary structure element in the ‘Secondary Structure estimation’ tab
+    and the fitted spectra in the respective tab.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto5.5.png" alt="" width="900" loading="lazy"/>
+</figure>
+<br>
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto5.6.png" alt="" width="900" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Congratulations! You have successfully estimated the percentage of secondary structure elements using the Selcon3 algorithm and the AU-SMP180 reference dataset.
 </li> 
 
-<li class="vf-list__item ">Extra step:  Upload the PDB files <a href="1a6m.cif" download>1a6m.cif</a> <a href="https://www.cell.com/biophysj/pdf/S0006-3495(99)77056-6.pdf" target="_blank" rel="noopener noreferrer">(Vojtěchovský, Jaroslav <i>et al.</i>, 1999)</a> and 
+<li class="vf-list__item ">Extra step: Upload the PDB files <a href="1a6m.cif" download>1a6m.cif</a> <a href="https://www.cell.com/biophysj/pdf/S0006-3495(99)77056-6.pdf" target="_blank" rel="noopener noreferrer">(Vojtěchovský, Jaroslav <i>et al.</i>, 1999)</a> and
 <a href="2vdf.cif" download>2vdf.cif</a> <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/prot.21841" target="_blank" rel="noopener noreferrer">(Cherezov, Vadim <i>et al.</i>, 2008)</a>. Compare the estimation to the actual secondary structure elements.
 </li> 
 
-<br>
-
-<figure class="vf-figure vf-figure--align vf-figure--align-centered">
-<img src="tuto5.5.png" alt="" width="400" loading="lazy"/>
-</figure>
 
  </ol>
 
