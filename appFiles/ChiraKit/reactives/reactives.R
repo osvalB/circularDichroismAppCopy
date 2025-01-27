@@ -846,9 +846,10 @@ observeEvent(input$loadExampleData,{
     # Include checkbox to track the previous processing step in the metadata
     tags$h4(selectInput('exampleDataType',NULL,c(
     'Basic sample and baseline' = 'basic',
+    'Spectrum in delta epsilon units' = 'secondary',
     'Thermal ramp'              = 'thermal',
-    'Chemical denaturation'     = 'chemical',
-    'Spectrum for sec. str. content' = 'secondary'))),
+    'Chemical denaturation'     = 'chemical'
+    ))),
 
     footer=tagList(
       actionButton('submitExampleData', 'Submit'),
@@ -864,6 +865,8 @@ observeEvent(input$submitExampleData,{
 
   reactives$data_loaded <- NULL
   output$legendInfo     <- NULL
+
+  inputUnits <- 'millidegrees'
 
   exampleDataType <- input$exampleDataType
 
@@ -888,16 +891,27 @@ observeEvent(input$submitExampleData,{
     cd_data_files   <- c('./www/urea_chc.csv')
     names           <- c('Urea denaturation')
 
+    reactives$is_urea_chc_example_data_selected <- TRUE
+
+  }
+
+  if (exampleDataType == 'secondary') {
+
+    cd_data_files   <- c('./www/Myoglobin.csv')
+    names           <- c('Myoglobin')
+    inputUnits      <- 'meanUnitMolarExtinction'
+
   }
 
   i <- 0
+
 
   # iterate over the files
   for (name in names) {
 
     i              <- i + 1
     cd_data_file   <- cd_data_files[i]
-    load_one_experiment(cd_data_file,name)
+    load_one_experiment(cd_data_file,name,inputUnits)
 
   }
 
@@ -921,10 +935,22 @@ observeEvent(input$submitExampleData,{
 
     popUpInfo("The chemical denaturation data of the Clathrin heavy chain N-terminal domain was loaded.
     We recommend navigating to the 'Chemical unfolding' module (Section '2. Analysis'),
-    pressing on '2a. Create dataset', and changing the 'Analysis type'
-    to 'Spectra decomposition (SVD)'.")
+    and pressing on '2a. Create dataset'.
+    To quickly fit the data, select the three-state model (N <-> I <-> U), allow fitting both slopes and use '2'
+    as the initial guess for the parameter D50 (where ΔG1 equals 0).")
 
   }
+
+  if (exampleDataType == 'secondary') {
+
+    popUpInfo("The CD spectrum of myoglobin was loaded.
+    We recommend navigating to the 'Secondary structure content' module (Section '2. Analysis').
+    To quickly estimate the secondary structure content, press on 'Run estimation!'.")
+
+    updateSelectInput(session,"workingUnits",NULL,
+                      choices = getChoices(inputUnits))
+
+    }
 
 
   Sys.sleep(0.5)
@@ -934,6 +960,8 @@ observeEvent(input$submitExampleData,{
   updateMaxVoltageValue()
   renderInputData()
   reactives$data_loaded <- TRUE
+
+
 
 },priority = 10)
 

@@ -78,7 +78,16 @@ observeEvent(list(input$legendInfo,input$workingUnits,input$oligomeric_state_che
   internalID_to_keep <- unlist(internalID_all[id_to_keep])
   
   df <- df[df$CD_curve %in% internalID_to_keep,]
-  
+
+  # Special case for the example data
+
+  if (reactives$is_urea_chc_example_data_selected) {
+
+    df[,2]    <- c(seq(0,6.5,by=0.5),seq(0,3.5,by=0.5),seq(0,6.5,by=0.5))
+    reactives$is_urea_chc_example_data_selected <- FALSE
+
+  }
+
   # Assign the created dataframe to the Table chemical_denaturation_conc (available at the 2b. Chemical unfolding Tab)
   output$chemical_denaturation_conc <- renderRHandsontable({
     rhandsontable(df,rowHeaders=NULL)    %>% 
@@ -756,7 +765,7 @@ output$chemFittedSVDCoefficients <- renderPlotly({
   req(reactives$chemical_data_was_fitted_svd_or_pca)
   
   df    <- generate_chemical_unfolding_df(cdAnalyzer)
-  dfFit <- generate_chemical_unfolding_df(cdAnalyzer,'signal_predicted')
+  dfFit <- generate_chemical_unfolding_df(cdAnalyzer,'signal_predicted_ipl')
   fig   <- plot_unfolding_fitting(
     df,dfFit,
     reactives$chemicalWorkingUnits,
