@@ -71,6 +71,10 @@
     Analysis of peptide helicity
 </li>
 
+<li class="vf-list__item ">
+    Comparison of spectra
+</li>
+
  </ol>    
    
 <p class="vf-intro__text"></p>
@@ -1121,6 +1125,113 @@ The CD spectrum of Myoglobin was published in
 
 <li class="vf-list__item ">
     Note: Apply this thermal denaturation model only for peptides that adopt helix or coil conformations.
+</li>
+
+</ol>
+
+</div>
+
+<div class="vf-section-header"><a class="vf-section-header__heading vf-section-header__heading--is-link" href="JavaScript:Void(0);" id="section-link"
+                                  onclick="myFunction('tutorial10')">10) Comparison of spectra
+    <svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z" fill="" fill-rule="nonzero"></path>
+    </svg></a></div>
+
+<div id="tutorial10" style="display:none">
+
+
+ <br>
+
+ <ol class="vf-intro__text">
+
+<li class="vf-list__item ">
+    Download the file <a href="spectra_comparison_example.csv" download>spectra_comparison_example.csv</a>. This file contains
+    artificially generated CD spectra: five measurements of sample 'A' and five measurements of sample 'A' at a different
+    concentration (called 'A2').
+</li>
+
+<li class="vf-list__item ">
+    Import the file into ChiraKit in "Custom" input mode. Replicated column names will be automatically modified in the Legends Table, under the 'Plotting' section.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.1.png" alt="" width="1000" loading="lazy"/>
+</figure>
+<br>
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.2.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+
+<li class="vf-list__item ">
+   You change the plot labels inside the 'Plotting' section. For example, you can set them to 'A1' and 'A2'.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.3.png" alt="" width="300" loading="lazy"/>
+</figure>
+<br>
+
+
+<li class="vf-list__item ">
+   Navigate to the 'Spectra comparison' panel (Section '2. Analysis').
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.4.png" alt="" width="200" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Set the labels to 'A1' and 'A2' and press on '2a. Create dataset'.
+    The average spectra with the associated standard deviations will be shown
+    under the 'Cd avg ± sd' tab.
+</li>
+
+ <figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.5.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.6.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    The difference between the average of 'A1'
+    and the average of 'A2' is shown under the 'Difference spectra' tab.
+    Before 290 nm, there is a clear difference in signal.
+    This is due to the concentration effect.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.7.png" alt="" width="700" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Click on the '2b. Normalisation' and choose 'L2_norm'. This way, the spectra will be normalised by the L2 norm.
+    You should notice that the difference between the two spectra has disappeared. In
+    other words, the difference previously observed can be explained by a difference in scale (concentration effect).
+    Indeed, now the distances distribution within categories ('Norm A1 versus Norm A1' and
+    'Norm A2 versus 'Norm A2') overlaps with the distances distribution between categories ('Norm A1' versus 'Norm A2').
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.8.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10.9.png" alt="" width="800" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
+    Congratulations! You have successfully compared two groups of CD spectra.
+    You can also use this module to compare different conditions, mutants, or replicates.
 </li>
 
 </ol>

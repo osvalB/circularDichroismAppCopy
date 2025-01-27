@@ -79,10 +79,10 @@ observeEvent(input$btn_create_compare_dataset,{
   relevantSpectra    <- df_ids2find$CD_curve 
   relevantLabels     <- df_ids2find[,2]
   
-  if (length(unique(relevantLabels)) > 6) {
+  if (length(unique(relevantLabels)) > 16) {
     
     shinyalert(text = 
-    paste("<b>Please use six or less categories."),
+    paste("<b>Please use 16 or less categories."),
     type = "warning",closeOnEsc = T,closeOnClickOutside = T,
     html=T)
     
