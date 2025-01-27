@@ -839,16 +839,23 @@ convertExperimentToWorkingUnits <- function() {
 
 observeEvent(input$loadExampleData,{
 
+  if (length(cdAnalyzer$experimentNames) > 0) {
+
+    popUpWarning('You already have data loaded. Please remove all the current experiments to load the example data.')
+
+    return(NULL)
+  }
+
   showModal(modalDialog(
 
     tags$h3('What kind of example would you like?'),
 
     # Include checkbox to track the previous processing step in the metadata
     tags$h4(selectInput('exampleDataType',NULL,c(
-    'Basic sample and baseline' = 'basic',
+    'Basic sample and baseline'       = 'basic',
     'Spectrum in delta epsilon units' = 'secondary',
-    'Thermal ramp'              = 'thermal',
-    'Chemical denaturation'     = 'chemical'
+    'Thermal ramp'                    = 'thermal',
+    'Chemical denaturation'           = 'chemical'
     ))),
 
     footer=tagList(
@@ -947,12 +954,9 @@ observeEvent(input$submitExampleData,{
     We recommend navigating to the 'Secondary structure content' module (Section '2. Analysis').
     To quickly estimate the secondary structure content, press on 'Run estimation!'.")
 
-    updateSelectInput(session,"workingUnits",NULL,
-                      choices = getChoices(inputUnits))
+  }
 
-    }
-
-
+  updateSelectInput(session,"workingUnits",NULL,choices = getChoices(inputUnits))
   Sys.sleep(0.5)
 
   # Copy experiments to allow modifying the wavelength range
