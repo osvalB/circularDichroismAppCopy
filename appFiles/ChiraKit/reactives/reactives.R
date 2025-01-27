@@ -248,6 +248,9 @@ observeEvent(input$cdFiles,{
     cdAnalyzer$initialize_experiment_modif()
     updateMaxVoltageValue()
     renderInputData()
+
+    reactives$show_example_data <- FALSE
+
     reactives$data_loaded <- TRUE
   }
 
@@ -786,6 +789,9 @@ observeEvent(input$triggerDeletion,{
     
     updateSelectInput(session,"experiment2delete",choices = c('None'))
     reactives$data_loaded <- FALSE
+
+    reactives$show_example_data <- TRUE
+
   }
   
 })
@@ -830,6 +836,106 @@ convertExperimentToWorkingUnits <- function() {
   cdAnalyzer$filter_data_by_wavelength(wlRange[1], wlRange[2])
 
 }
+
+observeEvent(input$loadExampleData,{
+
+  showModal(modalDialog(
+
+    tags$h3('What kind of example would you like?'),
+
+    # Include checkbox to track the previous processing step in the metadata
+    tags$h4(selectInput('exampleDataType',NULL,c(
+    'Basic sample and baseline' = 'basic',
+    'Thermal ramp'              = 'thermal',
+    'Chemical denaturation'     = 'chemical',
+    'Spectrum for sec. str. content' = 'secondary'))),
+
+    footer=tagList(
+      actionButton('submitExampleData', 'Submit'),
+      modalButton('Cancel')
+    )
+  ))
+
+})
+
+observeEvent(input$submitExampleData,{
+
+  removeModal()
+
+  reactives$data_loaded <- NULL
+  output$legendInfo     <- NULL
+
+  exampleDataType <- input$exampleDataType
+
+  if (exampleDataType == 'basic') {
+
+    cd_data_files   <- c('./www/R78906.d01','./www/R78906.d02','./www/R78906.d03',
+                        './www/R78907.d01','./www/R78907.d02','./www/R78907.d03')
+
+    names           <- c('R78906.1 (buffer)','R78906.2 (buffer)','R78906.3 (buffer)','R78907.1 (sample)','R78907.2 (sample)','R78907.3 (sample)')
+
+  }
+
+  if (exampleDataType == 'thermal') {
+
+    cd_data_files   <- c('./www/Lys-Tscan-Oct2024_20241101.csv')
+    names           <- c('Lysozyme thermal ramp')
+
+  }
+
+  if (exampleDataType == 'chemical') {
+
+    cd_data_files   <- c('./www/urea_chc.csv')
+    names           <- c('Urea denaturation')
+
+  }
+
+  i <- 0
+
+  # iterate over the files
+  for (name in names) {
+
+    i              <- i + 1
+    cd_data_file   <- cd_data_files[i]
+    load_one_experiment(cd_data_file,name)
+
+  }
+
+  if (exampleDataType == 'basic') {
+
+    popUpInfo('The basic sample and baseline data was loaded.
+    If you are new to ChiraKit, we recommend following the Tutorial #1, starting from step 3.')
+
+  }
+
+  if (exampleDataType == 'thermal') {
+
+    popUpInfo("The thermal ramp data of lysozyme was loaded.
+    We recommend navigating to the 'Thermal unfolding' module (Section '2. Analysis'),
+    pressing on '2a. Create dataset', and changing the 'Analysis type'
+    to 'Spectra decomposition (SVD)'.")
+
+  }
+
+  if (exampleDataType == 'chemical') {
+
+    popUpInfo("The chemical denaturation data of the Clathrin heavy chain N-terminal domain was loaded.
+    We recommend navigating to the 'Chemical unfolding' module (Section '2. Analysis'),
+    pressing on '2a. Create dataset', and changing the 'Analysis type'
+    to 'Spectra decomposition (SVD)'.")
+
+  }
+
+
+  Sys.sleep(0.5)
+
+  # Copy experiments to allow modifying the wavelength range
+  cdAnalyzer$initialize_experiment_modif()
+  updateMaxVoltageValue()
+  renderInputData()
+  reactives$data_loaded <- TRUE
+
+},priority = 10)
 
 # React to changes in molecular weight, path length or concentration 
 observeEvent(input$cdFilesInfo_cell_edit, {

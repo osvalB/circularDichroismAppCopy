@@ -14,7 +14,8 @@ reactives <- reactiveValues(
   chemical_data_was_fitted               = FALSE, # show chemical  results  (chemical_denaturation_reactives.R)
   chemical_data_was_fitted_svd_or_pca    = FALSE, # show chemical  results  (chemical_denaturation_reactives.R)
   spectra_was_decomposed_chemical        = FALSE, # show chemical  results  (chemical_denaturation_reactives.R)
-  show_basis_change_option               = FALSE, # shared assuming the user will analyse one dataset at a time 
+  show_basis_change_option               = FALSE, # shared assuming the user will analyse one dataset at a time
+  show_example_data                      = TRUE,  # show the button to load example data
                                                   #  used in thermal_ramp_reactives.R, chemical_denaturation_reactives.R and custom_analysis_reactives.R
   secStrFittingWasDone                   = FALSE, # show export options - secondary str. from spectra
   secStrCalcWasDone                      = FALSE, # show export options - secondary str. from PDB file
@@ -50,6 +51,8 @@ reactives <- reactiveValues(
 
 # Allow the UI to know the values of these reactives
 
+output$show_example_data   <- reactive( { return( reactives$show_example_data  ) } )
+
 output$show_basis_change_option   <- reactive( { return( reactives$show_basis_change_option  ) } )
 
 output$thermalDatasetCreated   <- reactive( { return( reactives$thermalDatasetCreated  ) } )
@@ -71,6 +74,7 @@ output$secStrCalcWasDone      <- reactive( { return( reactives$secStrCalcWasDone
 output$sesca_pred_was_run     <- reactive( { return( reactives$sesca_pred_was_run    ) } )
 output$sesca_est_was_run      <- reactive( { return( reactives$sesca_est_was_run     ) } )
 
+outputOptions(output, "show_example_data" , suspendWhenHidden = FALSE)
 
 outputOptions(output, "show_basis_change_option" , suspendWhenHidden = FALSE)
 

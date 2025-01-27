@@ -38,8 +38,20 @@ box(title = "1. Input", width = 3, solidHeader = T, status = "primary",
                                    withBusyIndicatorUI(
                                      shinyjs::hidden(actionButton("Go","",class = "btn-primary")))))
                        
-                     )
                      ),
+
+                    conditionalPanel('output.show_example_data',
+
+                      fluidRow(
+
+                         column(4, p(HTML("<b></b>"),
+                            actionButton(inputId = "loadExampleData",
+                            label = "Load example data!",
+                            icon("caret-right"),
+                            style="color: #FFFFFF; background-color: #00829c;
+                            border-color: #00829c")))
+
+    ))),
 
     conditionalPanel("input.inputMode == 'automaticBaselineSub'",
                      fluidRow(
