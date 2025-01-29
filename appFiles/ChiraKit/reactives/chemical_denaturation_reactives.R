@@ -55,12 +55,19 @@ observeEvent(list(input$legendInfo,input$workingUnits,input$oligomeric_state_che
   id  <- legendDf$Internal.ID
   
   oligo_state <- input$oligomeric_state_chem
-  
+
+  denaturant_conc <- 0
+
+  # Fill the urea concentration vector with the example data
+  if (reactives$urea_example_data_loaded) {
+    denaturant_conc <- c(seq(0,6.5,by=0.5),seq(0,3.5,by=0.5),seq(0,6.5,by=0.5))
+  }
+
   if (oligo_state == 'monomer') {
-    df           <- data.frame(id,0,25,'A')
+    df           <- data.frame(id,denaturant_conc,25,'A')
     colnames(df) <- c('CD_curve','[Denaturant agent] (M)','Temperature (°C/K)','Dataset')
   } else {
-    df           <- data.frame(id,0,0,25,'A')
+    df           <- data.frame(id,denaturant_conc,0,25,'A')
     
     oligoColumnName <- '[Dimer] (μM)'
     if (oligo_state == 'trimer')   oligoColumnName <- '[Trimer] (μM)'

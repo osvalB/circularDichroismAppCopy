@@ -191,7 +191,7 @@ renderInputData <- function() {
 observeEvent(input$cdFiles,{
   
   req(input$cdFiles)
-  
+
   reactives$data_loaded <- NULL
   output$legendInfo     <- NULL
   
@@ -244,6 +244,9 @@ observeEvent(input$cdFiles,{
 
   # Check that we have at least one experiment
   if (length(cdAnalyzer$experimentNames) > 0) {
+
+    reactives$urea_example_data_loaded <- FALSE
+
       # Copy experiments to allow modifying the wavelength range
     cdAnalyzer$initialize_experiment_modif()
     updateMaxVoltageValue()
@@ -261,7 +264,9 @@ observeEvent(input$automaticProcess,{
   
   req(input$cdFilesSample)
   req(input$cdFilesBaseline)
-  
+
+  reactives$urea_example_data_loaded <- FALSE
+
   showModal(modalDialog(
     
     tags$h3('Please enter the units of the CD data files,
@@ -852,16 +857,17 @@ observeEvent(input$loadExampleData,{
 
     # Include checkbox to track the previous processing step in the metadata
     tags$h4(selectInput('exampleDataType',NULL,c(
-    'Basic sample and baseline'       = 'basic',
-    'Spectrum in delta epsilon units' = 'secondary',
-    'Thermal ramp'                    = 'thermal',
-    'Chemical denaturation'           = 'chemical'
+    'Basic sample and baseline'             = 'basic',
+    'Spectrum in delta epsilon units'       = 'secondary',
+    'Thermal ramp'                = 'thermal',
+    'Chemical denaturation' = 'chemical'
     ))),
 
     footer=tagList(
       actionButton('submitExampleData', 'Submit'),
       modalButton('Cancel')
     )
+
   ))
 
 })
@@ -872,6 +878,13 @@ observeEvent(input$submitExampleData,{
 
   output$proccesingInfo <- NULL
   reactives$data_loaded <- NULL
+
+  # Check that the working units are millidegrees to load the chemical denaturation example
+  if (input$exampleDataType == 'chemical' & input$workingUnits != 'millidegrees') {
+
+      popUpWarning('Please set the working units to millidegrees to load the chemical denaturation example.')
+      return(NULL)
+  }
 
   inputUnits <- 'millidegrees'
 
@@ -921,7 +934,7 @@ observeEvent(input$submitExampleData,{
   }
 
   updateSelectInput(session,"workingUnits",NULL,choices = getChoices(inputUnits))
-  Sys.sleep(0.5)
+  Sys.sleep(1)
 
   i <- 0
 
@@ -973,36 +986,25 @@ observeEvent(input$submitExampleData,{
 
   if (exampleDataType == 'chemical') {
 
+    Sys.sleep(1)
     popUpInfo("The chemical denaturation data of the Clathrin heavy chain N-terminal domain was loaded.
     We recommend navigating to the 'Chemical unfolding' module (Section '2. Analysis'),
     and pressing on '2a. Create dataset'.
     To quickly fit the data, select the three-state model (N <-> I <-> U), allow fitting both slopes and use '2'
     as the initial guess for the parameter D50 (where ΔG1 equals 0).")
 
-    id           <- unlist(cdAnalyzer$get_experiment_properties('spectraNames'))
-    urea_conc    <- c(seq(0,6.5,by=0.5),seq(0,3.5,by=0.5),seq(0,6.5,by=0.5))
-
-    df           <- data.frame(id,urea_conc,25,'A')
-    colnames(df) <- c('CD_curve','[Denaturant agent] (M)','Temperature (°C/K)','Dataset')
-
-  # Assign the created dataframe to the Table chemical_denaturation_conc (available at the 2b. Chemical unfolding Tab)
-    output$chemical_denaturation_conc <- renderRHandsontable({
-      rhandsontable(df,rowHeaders=NULL)    %>%
-        hot_col(col = c(1), readOnly=TRUE) %>%
-        hot_table(stretchH='all')
-    })
+    reactives$urea_example_data_loaded <- TRUE
+ } else {
+    reactives$urea_example_data_loaded <- FALSE
  }
 
-  Sys.sleep(0.5)
+  Sys.sleep(0.2)
 
   # Copy experiments to allow modifying the wavelength range
   cdAnalyzer$initialize_experiment_modif()
   updateMaxVoltageValue()
   renderInputData()
   reactives$data_loaded <- TRUE
-
-
-
 
 },priority = 10)
 

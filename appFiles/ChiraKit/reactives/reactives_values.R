@@ -16,6 +16,7 @@ reactives <- reactiveValues(
   spectra_was_decomposed_chemical        = FALSE, # show chemical  results  (chemical_denaturation_reactives.R)
   show_basis_change_option               = FALSE, # shared assuming the user will analyse one dataset at a time
   show_example_data                      = TRUE,  # show the button to load example data
+  urea_example_data_loaded               = FALSE, # load the urea concentration automatically
 
   secStrFittingWasDone                   = FALSE, # show export options - secondary str. from spectra
   secStrCalcWasDone                      = FALSE, # show export options - secondary str. from PDB file
