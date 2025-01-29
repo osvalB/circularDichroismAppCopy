@@ -136,7 +136,7 @@ fitThermalExperiment <- function(exp) {
 observeEvent(list(input$legendInfo,input$workingUnits,input$oligomeric_state_term),{
   
   req(reactives$data_loaded)
-  
+
   # Retrieve the dataframe from the legends table (1. Load Input Tab)
   legendDf <- getLegendDF(input$legendInfo)
   id       <- legendDf$Internal.ID
@@ -169,6 +169,8 @@ observeEvent(list(input$legendInfo,input$workingUnits,input$oligomeric_state_ter
   internalID_to_keep <- unlist(internalID_all[id_to_keep])
   
   df <- df[df$CD_curve %in% internalID_to_keep,]
+
+  if (nrow(df) == 0) return(NULL)
 
   # Assign the created dataframe to the Table thermal_denaturation_data (available at the 2a. Thermal analysis Tab)
   output$thermal_denaturation_data <- renderRHandsontable({

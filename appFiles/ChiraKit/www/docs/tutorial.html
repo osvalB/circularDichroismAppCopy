@@ -34,7 +34,7 @@
     Welcome! Here you'll find tutorials to help you become a ChiraKit pro.
     We recommend starting with tutorials 1 and 2. Tutorials 3 to 10 can be completed in any order.
 </p>
-
+ 
 <p class="vf-intro__text"></p>
            
 </div>        
@@ -157,7 +157,6 @@ Click 'Apply' to execute the processing step and press the submit button in the 
     The averaged data will appear as a new curve on the figure and as an entry in the plotting list.
  </li>
 
-
   <figure class="vf-figure vf-figure--align vf-figure--align-centered">
     <img src="tuto1.12.png" alt="" width="1000" loading="lazy"/>
   </figure>
@@ -171,6 +170,8 @@ Click 'Apply' to execute the processing step and press the submit button in the 
     Deselect the three sample spectra and the "average sample" from the list in the "Plotting" section and
     select the three reference baseline spectra (R78906.d0x). The figure will now show the three reference baseline scans.
 </li> 
+
+
 
   <figure class="vf-figure vf-figure--align vf-figure--align-centered">
     <img src="tuto1.14.png" alt="" width="1000" loading="lazy"/>
@@ -226,6 +227,7 @@ Click 'Apply' to execute the processing step and press the submit button in the 
     Switching to the "CD Signal / working units" tab on the figure and
     selecting only the average and subtracted entries in the plotting list, the plot will show only these processed data.
 </li>
+
 
   <figure class="vf-figure vf-figure--align vf-figure--align-centered">
     <img src="tuto1.19.png" alt="" width="1000" loading="lazy"/>
@@ -370,6 +372,7 @@ Upload the 'R78907' files as 'Sample files' and the 'R78906' files as 'Baseline 
 <br>
 <li class="vf-list__item "> Adjust the 'HT max value' parameter to 6.5. The wavelength range should automatically update (to 178 - 330 nm). 
 </li> 
+
 
   <figure class="vf-figure vf-figure--align vf-figure--align-centered">
     <img src="tuto2.5.png" alt="" width="1000" loading="lazy"/>
@@ -898,8 +901,8 @@ The CD spectrum of Myoglobin was published in
 <br>
 
 <li class="vf-list__item ">
-    In the original paper, two models were tested: one with a dimeric intermediate ('N2 ⇌ I2 ⇌ 2U'),
-    and one with a monomeric intermediate ('N2 ⇌ 2I ⇌ 2U').
+    In the original paper, two models were tested: one with a dimeric intermediate ('N2 ⇌ I2 ⇌ 2U', Model II),
+    and one with a monomeric intermediate ('N2 ⇌ 2I ⇌ 2U', Model III).
     These models were referred to as Model II and Model III, respectively.
     Let's start with Model III by selecting the corresponding model and pressing on the button
     '2d. Fit data'.
@@ -921,7 +924,8 @@ The CD spectrum of Myoglobin was published in
 
 <li class="vf-list__item ">
     Select the 'Relative errors' tab to view the relative errors of the fitted parameters.
-    You should notice that the errors are extremely high for the D50step1 and M1 parameters.
+    You should notice that the errors are extremely high for the thermodynamic parameters D50step1 and M1.
+    The baseline for the native state (bN) has also a high relative error.
     This indicates that Model III may not be adequate.
 </li>
 
@@ -930,8 +934,9 @@ The CD spectrum of Myoglobin was published in
 </figure>
 <br>
 
- <li class="vf-list__item ">
-    Now select the Model II and press on the button '2d. Fit data'.
+<li class="vf-list__item ">
+    Now select the Model II ('N2 ⇌ I2 ⇌ 2U') and press on the button '2d. Fit data'.
+    You'll get an error because the initial estimates are not good enough.
 </li>
 
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
@@ -940,7 +945,6 @@ The CD spectrum of Myoglobin was published in
 <br>
 
 <li class="vf-list__item ">
-    You probably got an error because the initial estimates are not good enough.
     To help the fitting algorithm, set the initial guess of D50 to 4.
     Then, press on '2d. Fit data'.
 </li>
@@ -958,7 +962,7 @@ The CD spectrum of Myoglobin was published in
 <li class="vf-list__item ">
     Check the 'Fitted parameters' tab and the 'Relative errors' tab to analyze the numerical results of the fit.
     The fitted parameters should have lower relative errors than in Model III, indicating that Model II is more appropriate.
-    Indeed, the authors of the original paper concluded that the Trp repressor unfolds via a dimeric intermediate after performing more experiments.
+    Indeed, the authors concluded that the Trp repressor unfolds via a dimeric intermediate after performing more experiments.
 </li>
 
 <li class="vf-list__item ">
@@ -1018,6 +1022,7 @@ The CD spectrum of Myoglobin was published in
 
 <li class="vf-list__item ">
     The output is estimated helicity reported as a value in the range [0.0–1.0] and Lifson-Roig propagation (w) parameter that indicates overall helical propensity of the peptide.
+    Peptides with high helix tendency have a Lifson-Roig w greater than 1.2.
 </li>
 
   <figure class="vf-figure vf-figure--align vf-figure--align-centered">
@@ -1069,6 +1074,8 @@ The CD spectrum of Myoglobin was published in
     while the estimated helicity as a function of temperature is displayed under the 'Fractions' tab.
     In this case, we observe that the disordered fraction does not start at 0.
     This is in contrast to proteins, where the unfolded fraction typically starts at 0.
+    Moreover, in this case Δ<i>G</i> and Δ<i>H</i> could be estimated, but
+    Δ<i>C<sub>p</sub></i> could not (See 'Relative errors (%)' tab).
 </li>
 
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
@@ -1098,9 +1105,9 @@ The CD spectrum of Myoglobin was published in
  <ol class="vf-intro__text">
 
 <li class="vf-list__item ">
-    Download the file <a href="spectra_comparison_example.csv" download>spectra_comparison_example.csv</a>. This file contains
-    artificially generated CD spectra: five measurements of sample 'A' and five measurements of sample 'A' at a different
-    concentration (called 'A2').
+    Download the file <a href="spectra_comparison_example.csv" download>spectra_comparison_example.csv</a>.
+    This file contains artificially generated CD spectra for two samples: 'A' and 'A2' (the same sample but at a different concentration).
+    Each sample was measured five times, producing five replicates for “A” and five replicates for “A2”.
 </li>
 
 <li class="vf-list__item ">
@@ -1165,17 +1172,30 @@ The CD spectrum of Myoglobin was published in
 <br>
 
 <li class="vf-list__item ">
+    You can also see this difference in the “Distances” tab.
+    There, the replicate measurements for each sample (A1 vs A1 and A2 vs A2) are closely grouped,
+    but when comparing A1 to A2, they remain clearly separated in terms of Euclidean distance.
+</li>
+
+<figure class="vf-figure vf-figure--align vf-figure--align-centered">
+<img src="tuto10_distances.png" alt="" width="700" loading="lazy"/>
+</figure>
+<br>
+
+<li class="vf-list__item ">
     Click on the '2b. Normalisation' and choose 'L2_norm'. This way, the spectra will be normalised by the L2 norm.
-    You should notice that the difference between the two spectra has disappeared. In
-    other words, the difference previously observed can be explained by a difference in scale (concentration effect).
-    Indeed, now the distances distribution within categories ('Norm A1 versus Norm A1' and
-    'Norm A2 versus 'Norm A2') overlaps with the distances distribution between categories ('Norm A1' versus 'Norm A2').
+    You should notice that the difference between the two spectra has disappeared.
 </li>
 
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto10.8.png" alt="" width="800" loading="lazy"/>
 </figure>
 <br>
+
+<li class="vf-list__item ">
+    In the 'Distances' tab, you can see that the previously observed difference is explained by a scale (concentration) effect.
+    Specifically, the distance distributions within each category (“Norm A1 vs Norm A1” and “Norm A2 vs Norm A2”) now overlap with the distance distribution between categories (“Norm A1 vs Norm A2”).
+</li>
 
 <figure class="vf-figure vf-figure--align vf-figure--align-centered">
 <img src="tuto10.9.png" alt="" width="800" loading="lazy"/>

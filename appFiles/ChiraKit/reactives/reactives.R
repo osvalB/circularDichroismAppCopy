@@ -786,7 +786,7 @@ observeEvent(input$triggerDeletion,{
     output$proccesingInfo <- NULL
 
     updateSliderInput(session,'wavelengthRange',label=NULL,min=180,max=300,value = c(180,300))
-    
+
     updateSelectInput(session,"experiment2delete",choices = c('None'))
     reactives$data_loaded <- FALSE
 
@@ -870,8 +870,8 @@ observeEvent(input$submitExampleData,{
 
   removeModal()
 
+  output$proccesingInfo <- NULL
   reactives$data_loaded <- NULL
-  output$legendInfo     <- NULL
 
   inputUnits <- 'millidegrees'
 
@@ -891,6 +891,12 @@ observeEvent(input$submitExampleData,{
     cd_data_files   <- c('./www/Lys-Tscan-Oct2024_20241101.csv')
     names           <- c('Lysozyme thermal ramp')
 
+    updateSelectInput(session,
+                      inputId="oligomeric_state_term",
+                      label=NULL,
+                      selected='monomer'
+                      )
+
   }
 
   if (exampleDataType == 'chemical') {
@@ -898,7 +904,11 @@ observeEvent(input$submitExampleData,{
     cd_data_files   <- c('./www/urea_chc.csv')
     names           <- c('Urea denaturation')
 
-    reactives$is_urea_chc_example_data_selected <- TRUE
+    updateSelectInput(session,
+                      inputId="oligomeric_state_chem",
+                      label=NULL,
+                      selected='monomer'
+                      )
 
   }
 
@@ -910,8 +920,10 @@ observeEvent(input$submitExampleData,{
 
   }
 
-  i <- 0
+  updateSelectInput(session,"workingUnits",NULL,choices = getChoices(inputUnits))
+  Sys.sleep(0.5)
 
+  i <- 0
 
   # iterate over the files
   for (name in names) {
@@ -929,12 +941,33 @@ observeEvent(input$submitExampleData,{
 
   }
 
+  if (exampleDataType == 'secondary') {
+
+    popUpInfo("The CD spectrum of myoglobin was loaded.
+    We recommend navigating to the 'Secondary structure content' module (Section '2. Analysis').
+    To quickly estimate the secondary structure content, press on 'Run estimation!'.")
+
+  }
+
   if (exampleDataType == 'thermal') {
 
     popUpInfo("The thermal ramp data of lysozyme was loaded.
     We recommend navigating to the 'Thermal unfolding' module (Section '2. Analysis'),
     pressing on '2a. Create dataset', and changing the 'Analysis type'
     to 'Spectra decomposition (SVD)'.")
+
+    temperature <- unlist(cdAnalyzer$get_experiment_properties('temperature'))
+    id          <- unlist(cdAnalyzer$get_experiment_properties('spectraNames'))
+
+    df           <- data.frame(id,temperature,'A')
+    colnames(df) <- c('CD_curve','Temperature (°C/K)','Dataset')
+
+  # Assign the created dataframe to the Table thermal_denaturation_data (available at the 2a. Thermal analysis Tab)
+    output$thermal_denaturation_data <- renderRHandsontable({
+      rhandsontable(df,rowHeaders=NULL)    %>%
+        hot_col(col = c(1), readOnly=TRUE) %>%
+        hot_table(stretchH='all')
+    })
 
   }
 
@@ -946,17 +979,20 @@ observeEvent(input$submitExampleData,{
     To quickly fit the data, select the three-state model (N <-> I <-> U), allow fitting both slopes and use '2'
     as the initial guess for the parameter D50 (where ΔG1 equals 0).")
 
-  }
+    id           <- unlist(cdAnalyzer$get_experiment_properties('spectraNames'))
+    urea_conc    <- c(seq(0,6.5,by=0.5),seq(0,3.5,by=0.5),seq(0,6.5,by=0.5))
 
-  if (exampleDataType == 'secondary') {
+    df           <- data.frame(id,urea_conc,25,'A')
+    colnames(df) <- c('CD_curve','[Denaturant agent] (M)','Temperature (°C/K)','Dataset')
 
-    popUpInfo("The CD spectrum of myoglobin was loaded.
-    We recommend navigating to the 'Secondary structure content' module (Section '2. Analysis').
-    To quickly estimate the secondary structure content, press on 'Run estimation!'.")
+  # Assign the created dataframe to the Table chemical_denaturation_conc (available at the 2b. Chemical unfolding Tab)
+    output$chemical_denaturation_conc <- renderRHandsontable({
+      rhandsontable(df,rowHeaders=NULL)    %>%
+        hot_col(col = c(1), readOnly=TRUE) %>%
+        hot_table(stretchH='all')
+    })
+ }
 
-  }
-
-  updateSelectInput(session,"workingUnits",NULL,choices = getChoices(inputUnits))
   Sys.sleep(0.5)
 
   # Copy experiments to allow modifying the wavelength range
@@ -964,6 +1000,7 @@ observeEvent(input$submitExampleData,{
   updateMaxVoltageValue()
   renderInputData()
   reactives$data_loaded <- TRUE
+
 
 
 

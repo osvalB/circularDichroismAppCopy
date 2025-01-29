@@ -79,15 +79,6 @@ observeEvent(list(input$legendInfo,input$workingUnits,input$oligomeric_state_che
   
   df <- df[df$CD_curve %in% internalID_to_keep,]
 
-  # Special case for the example data
-
-  if (reactives$is_urea_chc_example_data_selected) {
-
-    df[,2]    <- c(seq(0,6.5,by=0.5),seq(0,3.5,by=0.5),seq(0,6.5,by=0.5))
-    reactives$is_urea_chc_example_data_selected <- FALSE
-
-  }
-
   # Assign the created dataframe to the Table chemical_denaturation_conc (available at the 2b. Chemical unfolding Tab)
   output$chemical_denaturation_conc <- renderRHandsontable({
     rhandsontable(df,rowHeaders=NULL)    %>% 
