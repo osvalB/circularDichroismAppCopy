@@ -25,9 +25,9 @@ shinyUI(dashboardPage(
       
         menuSubItem("2d. Custom  analysis",              icon = icon("chart-line"),     tabName = "menu_custom"),
         menuSubItem("2e. Spectra comparison",            icon = icon("scale-balanced"), tabName = "menu_spectra_comparison"),
-        menuSubItem("2f. Peptide helicity",              icon = icon("percent"),        tabName = "menu_peptide")
+        menuSubItem("2f. Peptide helicity",              icon = icon("percent"),        tabName = "menu_peptide"),
 
-        #menuSubItem("2g. G-Quadruplex structure",        icon = icon("dna"),            tabName = "menu_gQuadruplex")
+        menuSubItem("2g. G-Quadruplex structure",        icon = icon("dna"),            tabName = "menu_gQuadruplex")
       
       ),
       

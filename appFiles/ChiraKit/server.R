@@ -30,8 +30,8 @@ function(input, output, session) {
   sescaPyClass <- CdSpectraPredictor()
 
   # To handle the G-Quadruplex module
-  #gQuadRefPyClass     <- CdExperimentGeneral()
-  #gQuadSamplePyClass  <- CdExperimentGeneral()
+  gQuadRefPyClass     <- CdExperimentGeneral()
+  gQuadSamplePyClass  <- CdExperimentGeneral()
   
   source(paste0(base_dir,"reactives/reactives_values.R"                 ), local = T)
   source(paste0(base_dir,"reactives/reactives.R"                        ), local = T)
@@ -43,7 +43,7 @@ function(input, output, session) {
   source(paste0(base_dir,"reactives/spectra_comparison_reactives.R"     ), local = T)
   source(paste0(base_dir,"reactives/peptide_helix_content_reactives.R"  ), local = T)
   source(paste0(base_dir,"reactives/sesca_reactives.R"                  ), local = T)
-  #source(paste0(base_dir,"reactives/gQuadruplex_reactives.R"            ), local = T)
+  source(paste0(base_dir,"reactives/gQuadruplex_reactives.R"            ), local = T)
   source(paste0(base_dir,"reactives/download_reactives.R"               ), local = T)
   
 }
